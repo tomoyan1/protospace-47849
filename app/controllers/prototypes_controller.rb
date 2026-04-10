@@ -20,7 +20,7 @@ class PrototypesController < ApplicationController
   def create
     @prototype = Prototype.new(prototype_params)
     if @prototype.save
-      redirect_to prototype_path(@prototype)
+      redirect_to root_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,7 +29,7 @@ class PrototypesController < ApplicationController
   def edit
     @prototype = Prototype.find(params[:id])
     unless @prototype.user_id == current_user.id
-      redirect_to root_path
+      redirect_to prototype_path(@prototype)
     end
   end
 
